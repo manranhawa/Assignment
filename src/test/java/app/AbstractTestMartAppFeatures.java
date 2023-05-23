@@ -24,7 +24,7 @@ public  class AbstractTestMartAppFeatures {
 	@Test
 	public  void getProductTitlesByWorseRating() {
 		
-		Object Worserating=4.66;
+		double Worserating=4.66;
 		logger.debug("getting response");
 		Response res = given()
 	.contentType(ContentType.JSON)
@@ -40,9 +40,9 @@ public  class AbstractTestMartAppFeatures {
 	
 	for(int i = 0; i<jo.getJSONArray("products").length();i++)
 	{
-		Object rating= jo.getJSONArray("products").getJSONObject(i).get("rating");
+		double rating= (double) jo.getJSONArray("products").getJSONObject(i).get("rating");
 		
-		if((boolean) (rating=Worserating))
+		if(rating<=Worserating)
 		{
 			String title =jo.getJSONArray("products").getJSONObject(i).get("title").toString();
 			System.out.println("title");
